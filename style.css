@@ -38,35 +38,43 @@ body{
     flex: 1;
     border-left: 2px solid var(--text-color);
     padding: 15px;
-    height: 50%;
 }
 
 .intro-text p {
-    font-size: 2.25rem;
+    font-size: 2rem;
 }
 
 .intro-img img {
-    width: 70%;
+    width: 60%;
     border-radius: 50%;
     border: 3px solid var(--text-color);
 }
 
 @media only screen and (max-width: 600px) {
+    .intro {
+        flex-direction: column-reverse;
+    }
+
+    .intro-img {
+        border: none;
+        width: 70%;
+    }
+
+    .intro-img img {
+        width: 70%;
+    }
+    
+    .intro-text p {
+        font-size: 1.75rem;
+    }
+}
+
+@media only screen and (max-width: 425px) {
     .intro-img img {
         width: 90%;
     }
     
     .intro-text p {
         font-size: 1.5rem;
-    }
-}
-
-@media only screen and (max-width: 425px) {
-    .intro-img img {
-        width: 100%;
-    }
-    
-    .intro-text p {
-        font-size: 1.25rem;
     }
 }
