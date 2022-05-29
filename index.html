@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./fonts/fonts.css">
     <link rel="stylesheet" href="animations.css">
+    <script src="./js/script.js" defer></script>
 </head>
+
 <body>
     <main>
         <div class="intro">
@@ -24,9 +27,28 @@
                 <img src="./images/Rocket.svg" alt="">
             </div>
             <div class="timer">
-                <h1>T - 3 : 12 : 25 : 30</h1>
+                <div class="t-minus">
+                    <h1>T</h1>
+                    <h1>-</h1>
+                </div>
+                <div class="timer-details">
+                    <div class="timer-units">
+                        <h4>Days</h4>
+                        <h4>Hours</h4>
+                        <h4>Minutes</h4>
+                        <h4>Seconds</h4>
+                    </div>
+                    <div class="timer-data">
+                        <h1 id="days"></h1>
+                        <h1 id="hours"></h1>
+                        <h1 id="minutes"></h1>
+                        <h1 id="seconds"></h1>
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Inter";
     src: url("./Inter/Inter.var.woff2") format("woff2 supports variations");
-    src: url("./Inter/Inter.var.woff2") format("woff2 supports variations");
+    src: url("./Inter/Inter.var.woff2") format("woff2-variations");
     font-weight: 100 900;
 }

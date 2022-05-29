@@ -54,17 +54,67 @@ body{
 }
 
 .countdown {
-    margin: 15em 0 0 0;
+    margin: 10em 0 15em 0;
 }
+
+.timer {
+    flex: 3;
+}
+
+
+.rocket {
+    flex: 2;
+}
+
+
+.timer-units, .timer-data, .timer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.timer {
+    justify-content: center;
+
+}
+
+
+.t-minus {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+   font-size: 4rem;
+   font-weight: 900;
+}
+
+.t-minus h1 {
+    font-size: 4rem;
+}
+
+.timer-details {
+    flex: 2;
+}
+
+.timer-units {
+    padding: 0 0 0 ;
+}
+
+.timer-data h1 {
+    font-weight: 900;
+    font-size: 3rem;
+}
+
+.timer-units h4 {
+    font-size: 1.5rem;
+    padding: 5px;
+    font-weight: 100;
+}
+
 
 .rocket img {
     width: 50%;
 }
-
-
-
-
-
 
 
 
@@ -87,6 +137,20 @@ body{
     
     .intro-text p {
         font-size: 1.75rem;
+    }
+
+    .countdown {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        padding: 3em;
+    }
+    
+    .rocket {
+        margin: 5em 0 0 0;
+    }
+
+    .t-minus h1, .timer-details h1 {
+        font-size: 2.5rem;
     }
 }
 
