@@ -29,7 +29,7 @@ body{
 }
 
 .intro {
-    margin: 2em 0 0 0;
+    margin: 5em 0 0 0;
 }
 
 .intro-text {
@@ -54,16 +54,7 @@ body{
 }
 
 .countdown {
-    margin: 10em 0 15em 0;
-}
-
-.timer {
-    flex: 3;
-}
-
-
-.rocket {
-    flex: 2;
+    margin: 5em 0 15em 0;
 }
 
 
@@ -74,10 +65,17 @@ body{
 }
 
 .timer {
+    flex: 3;
     justify-content: center;
-
 }
 
+.rocket {
+    flex: 2;
+}
+
+.rocket img {
+    width: 50%;
+}
 
 .t-minus {
     flex: 1;
@@ -96,10 +94,6 @@ body{
     flex: 2;
 }
 
-.timer-units {
-    padding: 0 0 0 ;
-}
-
 .timer-data h1 {
     font-weight: 900;
     font-size: 3rem;
@@ -110,15 +104,6 @@ body{
     padding: 5px;
     font-weight: 100;
 }
-
-
-.rocket img {
-    width: 50%;
-}
-
-
-
-
 
 @media only screen and (max-width: 600px) {
     .intro {
