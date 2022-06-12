@@ -15,7 +15,7 @@ html {
 }
 
 body{
-    background-color: hsl(212, 99%, 73%);
+    background-color: hsl(224, 99%, 50%);
     background-image: linear-gradient(to right, hsl(212, 99%, 73%), hsl(224, 99%, 50%), hsl(222, 100%, 33%));
     background-size: 300% 300%;
     animation: gradient 7s ease infinite;
