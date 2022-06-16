@@ -6,7 +6,7 @@ function countdown() {
     let seconds = document.getElementById("seconds");
     let timer = document.querySelectorAll(".timer-data h1");
   
-    const launchDate = new Date(2022, 5, 18, 9, 0, 0, 0);
+    const launchDate = new Date(2022, 5, 20, 9, 0, 0, 0);
     const now = new Date();
     const distance = launchDate - now;
   
