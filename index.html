@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Alireza — Pentester · DevOps · Linux</title>
+<meta name="description" content="Alireza — Pentester, DevOps and Linux. Elegant personal site with fluid animations." />
+
+<!-- Basic CSS reset + variables -->
+<style>
+  :root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --muted:rgba(255,255,255,0.72);
+    --glass: rgba(255,255,255,0.04);
+    --accent-1: 203, 120, 255; /* purple */
+    --accent-2: 36, 199, 255;  /* cyan */
+    --radius: 14px;
+    --ease: cubic-bezier(.16,.84,.32,1);
+  }
+  *{box-sizing:border-box}
+  html,body,#app{height:100%}
+  body{
+    margin:0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(var(--accent-1),0.08), transparent 8%),
+                radial-gradient(1000px 500px at 95% 90%, rgba(var(--accent-2),0.06), transparent 8%),
+                linear-gradient(180deg,#07101a 0%, #07121a 50%, #02040a 100%);
+    color: #eaf2ff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+  }
+
+  /* Header */
+  header{
+    position:sticky;
+    top:0;
+    z-index:60;
+    backdrop-filter: blur(6px) saturate(1.1);
+    background: linear-gradient(180deg, rgba(8,12,18,0.35), rgba(8,12,18,0.12));
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .nav{
+    max-width:1200px;
+    margin:0 auto;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .logo{
+    width:46px;
+    height:46px;
+    border-radius:10px;
+    background: linear-gradient(135deg, rgba(var(--accent-1),1), rgba(var(--accent-2),1));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#07121a;
+    letter-spacing:0.6px;
+    box-shadow: 0 6px 20px rgba(2,8,23,0.6);
+  }
+  .brand h1{ margin:0; font-size:15px; letter-spacing:0.2px; }
+  .brand p{ margin:0; font-size:12px; color:var(--muted) }
+
+  /* Hero */
+  .hero{
+    max-width:1200px;
+    margin: 36px auto 24px;
+    padding: 32px 28px;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:28px;
+    align-items:center;
+  }
+
+  .intro{
+    max-width:760px;
+  }
+  .eyebrow{
+    display:inline-block;
+    background:linear-gradient(90deg, rgba(var(--accent-1),0.14), rgba(var(--accent-2),0.14));
+    padding:6px 10px;
+    border-radius:999px;
+    color:var(--muted);
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:0.3px;
+    backdrop-filter: blur(4px);
+  }
+  h2{
+    font-size:48px;
+    line-height:1.02;
+    margin:16px 0 8px;
+    letter-spacing:-0.6px;
+    background: linear-gradient(90deg, rgba(var(--accent-1),1), rgba(var(--accent-2),1));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    font-weight:800;
+  }
+  p.lead{
+    margin:14px 0 22px;
+    color:var(--muted);
+    font-size:17px;
+    max-width:60ch;
+  }
+
+  /* Magnetic call-to-action */
+  .actions{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .btn{
+    --pad:14px 20px;
+    padding:var(--pad);
+    background:linear-gradient(90deg, rgba(var(--accent-1),0.18), rgba(var(--accent-2),0.14));
+    border-radius:999px;
+    color:#fff;
+    font-weight:700;
+    letter-spacing:0.3px;
+    border: 1px solid rgba(255,255,255,0.06);
+    cursor:pointer;
+    transform: translateZ(0);
+    transition: transform .28s var(--ease), box-shadow .28s var(--ease);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .btn.secondary{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:var(--muted);
+    font-weight:600;
+    padding:12px 18px;
+  }
+  .btn:active{ transform: translateY(1px) scale(.998) }
+
+  /* Card (right) */
+  .card{
+    border-radius:var(--radius);
+    padding:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 10px 40px rgba(2,8,23,0.6);
+    position:relative;
+    overflow:hidden;
+    min-height:220px;
+  }
+  .card .stats{ display:flex; gap:12px; flex-wrap:wrap; }
+  .stat{
+    min-width:120px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+    border-radius:12px;
+    padding:12px;
+    border: 1px solid rgba(255,255,255,0.02);
+    transition: transform .28s var(--ease), box-shadow .28s var(--ease);
+  }
+  .stat strong{ display:block; font-size:20px }
+  .stat span{ color:var(--muted); font-size:13px }
+
+  /* Projects grid */
+  .projects{
+    max-width:1200px; margin:36px auto; padding:0 24px 64px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:20px;
+  }
+  .project{
+    border-radius:16px;
+    padding:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);
+    min-height:160px;
+    overflow:hidden;
+    position:relative;
+    transform-origin:center;
+    transition: transform .6s var(--ease), box-shadow .4s var(--ease);
+  }
+  .project:hover{ transform: translateY(-8px) scale(1.01); box-shadow: 0 18px 60px rgba(2,8,23,0.7); }
+
+  .project .tag{ font-size:12px; padding:6px 8px; border-radius:999px; display:inline-block; margin-bottom:8px; color:var(--muted) }
+  .project h3{ margin:4px 0 8px; font-size:18px }
+  .project p{ color:var(--muted); font-size:13px; margin:0 }
+
+  /* Footer / contact */
+  footer{
+    max-width:1200px; margin:0 auto 60px; padding:12px 20px; color:var(--muted);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+
+  /* Floating subtle light */
+  .light {
+    pointer-events:none;
+    position:fixed;
+    right:-20%;
+    top: -10%;
+    width:720px;
+    height:720px;
+    background: radial-gradient(circle at 30% 30%, rgba(var(--accent-2),0.06), transparent 18%),
+                radial-gradient(circle at 70% 70%, rgba(var(--accent-1),0.05), transparent 14%);
+    transform: translateZ(0);
+    z-index:1;
+    filter: blur(40px);
+    mix-blend-mode:screen;
+  }
+
+  /* Scroll reveal helper (hidden by default) */
+  .reveal {
+    transform: translateY(18px);
+    opacity: 0;
+    transition: opacity .9s var(--ease), transform .9s var(--ease);
+    will-change: transform, opacity;
+  }
+  .reveal.visible{ transform: translateY(0); opacity: 1; }
+
+  /* Small screens */
+  @media (max-width:980px){
+    .hero{ grid-template-columns:1fr; padding:20px; gap:18px }
+    .projects{ grid-template-columns: repeat(2, 1fr) }
+  }
+  @media (max-width:640px){
+    .brand h1{ font-size:14px }
+    h2{ font-size:36px }
+    .projects{ grid-template-columns: 1fr; padding:0 14px }
+    .card{ min-height:180px }
+  }
+
+  /* Respect reduce motion */
+  @media (prefers-reduced-motion: reduce){
+    .btn, .project, .stat, .hero, .card, .reveal{ transition: none !important; animation:none !important }
+  }
+</style>
+</head>
+<body>
+  <div class="light" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">AB</div>
+        <div>
+          <h1>Alireza Baratian</h1>
+          <p>Pentester · Web · DevOps</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="intro">
+        <div class="eyebrow">I build & break web systems</div>
+        <h2 id="hero-title">Hey — I'm <span style="background:linear-gradient(90deg,#cb78ff,#24c7ff); -webkit-background-clip:text; color:transparent">Alireza</span><br><small style="font-weight:600; color:var(--muted); font-size:18px; display:block; margin-top:6px">Pentester, developer & Linux sysadmin.</small></h2>
+        <p class="lead">I run web app pentests, write PoCs and maintain Linux-based CI/CD infra. I focus on pragmatic security: find the weakest link, explain it clearly, and help fix it fast.</p>
+
+        <div class="actions">
+          <button class="btn" id="magnet-cta" data-link="#contact" aria-label="Let's collaborate">Let's collaborate →</button>
+          <a class="btn secondary" href="#projects">View projects</a>
+        </div>
+
+        <div style="margin-top:18px; color:var(--muted); font-size:13px;">
+          <strong style="display:block; font-size:14px; color:#fff;">Quick links</strong>
+          <span style="opacity:.88">GitHub: <span style="color:#cfe9ff">github.com/alireza</span> • LinkedIn: <span style="color:#cfe9ff">linkedin.com/in/alireza</span></span>
+        </div>
+      </div>
+
+      <!-- right column card -->
+      <aside class="card" aria-hidden="false">
+        <div class="stats reveal" style="display:flex;gap:12px;">
+          <div class="stat">
+            <strong>26</strong>
+            <span>Years</span>
+          </div>
+          <div class="stat">
+            <strong>Pentester</strong>
+            <span>Primary role</span>
+          </div>
+          <div class="stat">
+            <strong>Web · DevOps</strong>
+            <span>Stack</span>
+          </div>
+        </div>
+
+        <div class="reveal" style="margin-top:14px;">
+          <h4 style="margin:6px 0 8px;">What I do</h4>
+          <p style="margin:0; color:var(--muted); font-size:14px;">
+            Manual testing, automated scanning, PoC development (Python / Node / Bash). Infrastructure & CI/CD on Linux.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" style="max-width:1200px;margin:18px auto;padding:0 20px 40px;">
+      <h3 style="margin:0 0 12px;font-size:20px">Skills & tools</h3>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <span class="tag reveal" style="padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:12px">Web Pentesting</span>
+        <span class="tag reveal" style="padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:12px">Burp Suite</span>
+        <span class="tag reveal" style="padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:12px">Python / Node</span>
+        <span class="tag reveal" style="padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:12px">Linux / Sysadmin</span>
+        <span class="tag reveal" style="padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:12px">CI/CD</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects" aria-label="Selected projects">
+      <article class="project reveal" tabindex="0" data-url="#">
+        <div class="tag">PoC</div>
+        <h3>XXE Audit Toolkit</h3>
+        <p>Hands-on XXE PoCs and an auditing shell to automatically discover weak XML parsers.</p>
+      </article>
+
+      <article class="project reveal" tabindex="0" data-url="#">
+        <div class="tag">Infra</div>
+        <h3>Private Collaborator Server</h3>
+        <p>Self-hosted collaborator replacement used for internal testing and CI integrations.</p>
+      </article>
+
+      <article class="project reveal" tabindex="0" data-url="#">
+        <div class="tag">Tooling</div>
+        <h3>CI Security Hooks</h3>
+        <p>Scripts and policies that run during CI to prevent secrets and insecure configs from merging.</p>
+      </article>
+    </section>
+
+    <!-- ABOUT & CONTACT -->
+    <section id="about" style="max-width:920px;margin:0 auto;padding:0 20px 40px;">
+      <h3 style="margin-bottom:8px">About</h3>
+      <p style="color:var(--muted); line-height:1.6; max-width:70ch;" class="reveal">
+        I'm a developer-turned-pentester who enjoys digging into web stacks, automating boring bits and writing clear remediation guides. I prefer pragmatic fixes over flashy exploits: if the team can understand it, they can fix it.
+      </p>
+    </section>
+
+    <section id="contact" style="max-width:920px;margin:0 auto;padding:0 20px 64px;">
+      <h3>Contact</h3>
+      <p style="color:var(--muted)">Email: <a href="mailto:hello@alireza.example" style="color:#cfe9ff">hello@alireza.example</a></p>
+    </section>
+
+    <footer>
+      <div style="opacity:.9">© <span id="year"></span> Alireza Baratian</div>
+      <div style="color:var(--muted)">Built with care · <span style="margin-left:8px">Light motion</span></div>
+    </footer>
+  </main>
+
+<!-- JavaScript: parallax, reveal, magnetic CTA and spotlight cursor -->
+<script>
+(function(){
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Simple reveal on scroll using IntersectionObserver
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e=>{
+      if(e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    })
+  }, { threshold: 0.12 });
+  reveals.forEach(r => obs.observe(r));
+
+  // Parallax mouse move on hero / light subtle
+  const light = document.querySelector('.light');
+  document.addEventListener('mousemove', (e) => {
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const x = (e.clientX / window.innerWidth) * 2 - 1;
+    const y = (e.clientY / window.innerHeight) * 2 - 1;
+    light.style.transform = `translate3d(${x * 6}%, ${y * 6}%, 0) rotate(${x * 3}deg)`;
+  });
+
+  // Magnetic button: moves slightly toward pointer on hover
+  const magnet = document.getElementById('magnet-cta');
+  function magnetMove(e) {
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = magnet.getBoundingClientRect();
+    const dx = e.clientX - (rect.left + rect.width/2);
+    const dy = e.clientY - (rect.top + rect.height/2);
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const strength = Math.min(12, 120 / (dist + 12));
+    magnet.style.transform = `translate(${dx * strength * 0.01}px, ${dy * strength * 0.01}px) scale(${1 + strength*0.004})`;
+  }
+  function magnetReset(){
+    magnet.style.transform = '';
+  }
+  magnet.addEventListener('mousemove', magnetMove);
+  magnet.addEventListener('mouseleave', magnetReset);
+  magnet.addEventListener('click', ()=>{ location.href = magnet.dataset.link || '#contact' });
+
+  // Project cards: open data-url if clicked (demo)
+  document.querySelectorAll('.project').forEach(p=>{
+    p.addEventListener('click', ()=> {
+      const u = p.dataset.url;
+      if(u && u !== '#') window.open(u, '_blank');
+      p.animate([{ transform: 'scale(0.995)' }, { transform: 'scale(1)' }], { duration:160, easing:'ease-out' });
+    });
+  });
+
+  // Subtle parallax on hero elements by scroll (translateY)
+  const hero = document.querySelector('.hero');
+  const heroTitle = document.getElementById('hero-title');
+  window.addEventListener('scroll', () => {
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = hero.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, 1 - (rect.top / (window.innerHeight))));
+    heroTitle.style.transform = `translateY(${progress * -18}px)`;
+  }, { passive:true });
+
+  // Smooth little floating animation for cards (CSS fallback already present)
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.card, .project, .stat').forEach(el=>{
+      el.animate(
+        [{ transform: 'translateY(-2px)' }, { transform: 'translateY(0px)' }, { transform: 'translateY(-2px)' }],
+        { duration: 4500 + Math.random()*2000, iterations: Infinity, easing:'ease-in-out' }
+      );
+    });
+  }
+
+  // small accessibility: allow tab focusing to reveal
+  document.addEventListener('keyup', e => {
+    if(e.key === 'Tab') document.body.classList.add('show-focus');
+  });
+})();
+</script>
+</body>
+</html>
